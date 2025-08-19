@@ -19,15 +19,35 @@ export function TaskContextProvider(props) {
   }
 
   const [show, setShow] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [taskToEdit, setTaskToEdit] = useState();
+
+  function editTask(updatedTask){
+    setTasks(tasks.map((task)=> task.id === updatedTask.id ? updatedTask : task))
+  }
 
   function handleClickShowForm() {
     if (show === false) {
       setShow(true);
     } else setShow(false);
+    setIsEditing(false);
   }
 
   return (
-    <TaskContext.Provider value={{ tasks, addTask, deleteTask, handleClickShowForm, show }}>
+    <TaskContext.Provider
+      value={{
+        tasks,
+        addTask,
+        deleteTask,
+        handleClickShowForm,
+        show,
+        isEditing,
+        setIsEditing,
+        taskToEdit,
+        setTaskToEdit,
+        editTask
+      }}
+    >
       {props.children}
     </TaskContext.Provider>
   );
