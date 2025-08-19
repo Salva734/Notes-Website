@@ -3,7 +3,7 @@ import { TaskContext } from "../context/TaskContext";
 import { tasks } from "../tasks";
 
 function Form() {
-  const { addTask } = useContext(TaskContext);
+  const { addTask, handleClickShowForm } = useContext(TaskContext);
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -18,6 +18,7 @@ function Form() {
     addTask(newTask);
     setTitle("");
     setContent("");
+    handleClickShowForm()
   };
 
   return (
